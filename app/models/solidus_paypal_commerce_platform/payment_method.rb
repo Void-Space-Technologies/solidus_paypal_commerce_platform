@@ -59,6 +59,7 @@ module SolidusPaypalCommercePlatform
     end
 
     def javascript_sdk_url(order: nil, currency: nil)
+      auto_capture = Spree::Config.auto_capture if auto_capture.nil?
       # Both instance and class respond to checkout_steps.
       step_names = order ? order.checkout_steps : ::Spree::Order.checkout_steps.keys
 

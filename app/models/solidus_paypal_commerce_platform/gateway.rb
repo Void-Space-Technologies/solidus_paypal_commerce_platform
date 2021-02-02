@@ -73,6 +73,7 @@ module SolidusPaypalCommercePlatform
     end
 
     def create_order(order, auto_capture)
+      auto_capture = Spree::Config.auto_capture if auto_capture.nil?
       intent = auto_capture ? "CAPTURE" : "AUTHORIZE"
       request = OrdersCreateRequest.new
       paypal_order = SolidusPaypalCommercePlatform::PaypalOrder.new(order)
